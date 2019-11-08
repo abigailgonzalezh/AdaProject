@@ -30,7 +30,7 @@ export default function FullWidthGrid() {
             <br/>
             <br/>
             <br/>
-            <div><Contact/>ContactlessiconAvisa a tus contactos</div>
+            <div><Contact/>Avisa a tus contactos</div>
             <br/>
             <div><Eye/>Que alguien sepa de ti</div>
             <br/>
