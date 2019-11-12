@@ -1,0 +1,18 @@
+<h1>Show Place</h1>
+
+<ul>
+
+  <li>
+    <strong>Places:</strong>
+    <%= @place.places_id %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @place.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.place_path(@conn, :edit, @place) %></span>
+<span><%= link "Back", to: Routes.place_path(@conn, :index) %></span>
