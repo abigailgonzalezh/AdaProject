@@ -1,13 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Landing from './components/layout/Landing';
+import { BrowserRouter as Router, Route , Link } from "react-router-dom";
+
+import Landing from "./components/layout/Landing";
+import Chat from "./components/dashboard/Chat";
+
 
 function App() {
   return (
-    <div className="App">
-      <Landing />
-    </div>
+    <Router>
+      <Route exact strict path="/" component={Landing} />
+      <Route exact path="/chat" component={Chat} />
+    </Router>
   );
 }
 
