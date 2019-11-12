@@ -8,7 +8,7 @@ defmodule AdaBe.Accounts.Credential do
     field :password_hash, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
-    field :user_id, :id
+    belongs_to (:user, AdaBe.Accounts.User)
 
     timestamps()
   end
