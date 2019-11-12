@@ -5,6 +5,7 @@ defmodule AdaBe.Accounts.User do
   schema "users" do
     field :id_usuario, :integer
     field :username, :string
+    has_one:credential, AdaBe.Accounts.Credential
 
     timestamps()
   end
