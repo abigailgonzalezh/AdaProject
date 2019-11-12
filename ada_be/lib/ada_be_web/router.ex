@@ -18,6 +18,8 @@ defmodule AdaBeWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/places", PlaceController
+    resources "/groups", GroupController
   end
 
   # Other scopes may use custom stacks.
