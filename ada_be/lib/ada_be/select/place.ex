@@ -5,7 +5,7 @@ defmodule AdaBe.Select.Place do
   schema "places" do
     field :name, :string
     field :places_id, :integer
-    field :user_id, :id
+    belongs_to (:user, AdaBe.Accounts.User)
 
     timestamps()
   end

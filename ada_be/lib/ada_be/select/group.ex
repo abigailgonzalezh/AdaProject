@@ -4,7 +4,7 @@ defmodule AdaBe.Select.Group do
 
   schema "groups" do
     field :group_id, :integer
-    field :user_id, :id
+    belongs_to (:user, AdaBe.Accounts.User)
 
     timestamps()
   end
