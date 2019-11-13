@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
+import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -29,6 +30,7 @@ export default function FullWidthGrid() {
     const classes = useStyles();    
 
     return (
+        <Route>
         <Grid container style={{height:"100vh", alignItems:"center",backgroundColor: '#fffcfd'}}>
             <Container>
                 <div>
@@ -49,10 +51,11 @@ export default function FullWidthGrid() {
                     variant="outlined"
                     />
                 </div>
-                    <Grid style={{alignItems:"center"}}>
+                <Link to="/Login">
                         <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Ingresar</Fab>
-                    </Grid>
+                    </Link>
                 </Container>
         </Grid>
+        </Route>
     );
   }

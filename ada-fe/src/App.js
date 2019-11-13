@@ -15,6 +15,7 @@ function App() {
       <Route exact strict path="/" component={Landing} />
       <Route exact path="/chat" component={Chat} />
       <Route exact path ="/register" component={Register} />
+      <Route exact path ="/login" component={Login} />
     </Router>
   );
 }
