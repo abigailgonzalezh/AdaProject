@@ -49,8 +49,17 @@ export default function FullWidthGrid() {
                     variant="outlined"
                     />
                 </div>
+                <div>
+                    <TextField
+                    id="outlined-basic"
+                    className={classes.textField}
+                    label="Repetir contraseña"
+                    margin="normal"
+                    variant="outlined"
+                    />
+                </div>
                     <Grid style={{alignItems:"center"}}>
-                        <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Ingresar</Fab>
+                        <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Registrarse</Fab>
                     </Grid>
                 </Container>
         </Grid>

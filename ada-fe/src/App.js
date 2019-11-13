@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route , Link } from "react-router-dom";
 import Landing from "./components/layout/Landing";
 import Chat from "./components/dashboard/Chat";
 import Login from "./components/users/Login";
+import Register from "./components/users/Register"
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <Router>
       <Route exact strict path="/" component={Landing} />
       <Route exact path="/chat" component={Chat} />
-      <Route exact path ="/login" component={Login} />
+      <Route exact path ="/register" component={Register} />
     </Router>
   );
 }

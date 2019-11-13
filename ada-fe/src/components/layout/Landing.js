@@ -9,6 +9,7 @@ import Heart from '@material-ui/icons/FavoriteBorder';
 import Fab from '@material-ui/core/Fab';
 import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
 import { Container } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 
 const accent = purple['A200'];
@@ -32,23 +33,20 @@ export default function FullWidthGrid() {
 
   return (
     <div className={classes.root}>
-      <Grid container >
+      <Grid container style={{height:"100vh"}}>
 
-          <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black',height:"100vh"}}>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+          <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
+
             <div><Contact/>  Avisa a tus contactos</div>
             <br/>
             <div><Eye/>  Que alguien sepa de ti</div>
             <br/>
             <div><Heart/>  Sal sin miedo </div>
           </Grid>
-
+ 
       <Route>
         
-          <Grid className={classes.paper} alignItems="center" justify="center" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black',height:"100vh"}}>
+          <Grid className={classes.paper} alignItems="center" justify="center" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
           <Container centered>
           <br/>
             <br/>
@@ -59,8 +57,10 @@ export default function FullWidthGrid() {
             </Link>
             <br/>
             <br/>
+            <Link to="/Register">
             <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Registrarse</Fab>
             <br/>
+            </Link>
             </Container >
           </Grid>
           
