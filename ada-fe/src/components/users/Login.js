@@ -30,8 +30,10 @@ const useStyles = makeStyles(theme => ({
     width: 200,
   },
 }));
+
 export default function FullWidthGrid() {
     const classes = useStyles();    
+
 
     return (
         <Route>
@@ -56,7 +58,7 @@ export default function FullWidthGrid() {
                     variant="outlined"
                     />
                 </div>
-                <Link to="/Login">
+                <Link to="/chat">
                         <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Ingresar</Fab>
                     </Link>
                     </div>
