@@ -5,12 +5,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
+import './Login.css'
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
-    alignContent: 'center'
+    height: "100vh", 
+    display: 'flex',
+    justifycontent: 'center',
+    alignitems: 'center'
   },
   paper: {
     padding: theme.spacing(1),
@@ -18,7 +21,8 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     marginTop: 12,
-    width: 500,
+    width: 220,
+    alignContent: 'center'
   },
   fab: {
     marginTop: 12,
@@ -31,8 +35,9 @@ export default function FullWidthGrid() {
 
     return (
         <Route>
-        <Grid container style={{height:"100vh", alignItems:"center",backgroundColor: '#fffcfd'}}>
-            <Container>
+        <Grid container style={{height:"100vh",alignItems:"center",backgroundColor: '#fffcfd'}} class="centered">
+            <Container class="centered" >
+              <div class  >
                 <div>
                     <TextField
                     id="outlined-basic"
@@ -42,7 +47,7 @@ export default function FullWidthGrid() {
                     variant="outlined"
                     />
                 </div>
-                <div>
+                <div class>
                     <TextField
                     id="outlined-basic"
                     className={classes.textField}
@@ -54,6 +59,7 @@ export default function FullWidthGrid() {
                 <Link to="/Login">
                         <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Ingresar</Fab>
                     </Link>
+                    </div>
                 </Container>
         </Grid>
         </Route>

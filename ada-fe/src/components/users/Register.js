@@ -4,6 +4,8 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
+import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
+import './Login.css'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -17,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     marginTop: 12,
-    width: 500,
+    width: 200,
   },
   fab: {
     marginTop: 12,
@@ -29,39 +31,43 @@ export default function FullWidthGrid() {
     const classes = useStyles();    
 
     return (
-        <Grid container style={{height:"100vh", alignItems:"center",backgroundColor: '#fffcfd'}}>
-            <Container>
-                <div>
-                    <TextField
-                    id="outlined-basic"
-                    className={classes.textField}
-                    label="Usuario"
-                    margin="normal"
-                    variant="outlined"
-                    />
-                </div>
-                <div>
-                    <TextField
-                    id="outlined-basic"
-                    className={classes.textField}
-                    label="Contraseña"
-                    margin="normal"
-                    variant="outlined"
-                    />
-                </div>
-                <div>
-                    <TextField
-                    id="outlined-basic"
-                    className={classes.textField}
-                    label="Repetir contraseña"
-                    margin="normal"
-                    variant="outlined"
-                    />
-                </div>
-                    <Grid style={{alignItems:"center"}}>
-                        <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Registrarse</Fab>
-                    </Grid>
-                </Container>
-        </Grid>
-    );
+      <Route>
+      <Grid container style={{height:"100vh",alignItems:"center",backgroundColor: '#fffcfd'}} class="centered">
+          <Container class="centered" >
+            <div class  >
+              <div>
+                  <TextField
+                  id="outlined-basic"
+                  className={classes.textField}
+                  label="Usuario"
+                  margin="normal"
+                  variant="outlined"
+                  />
+              </div>
+              <div class>
+                  <TextField
+                  id="outlined-basic"
+                  className={classes.textField}
+                  label="Contraseña"
+                  margin="normal"
+                  variant="outlined"
+                  />
+              </div>
+              <div class>
+                  <TextField
+                  id="outlined-basic"
+                  className={classes.textField}
+                  label="Confirmar contraseña"
+                  margin="normal"
+                  variant="outlined"
+                  />
+              </div>
+              <Link to="/Login">
+                      <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Registrarse</Fab>
+                  </Link>
+                  </div>
+              </Container>
+      </Grid>
+      </Route>
+  );
   }

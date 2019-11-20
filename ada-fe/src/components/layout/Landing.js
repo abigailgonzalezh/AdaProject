@@ -36,7 +36,9 @@ export default function FullWidthGrid() {
       <Grid container style={{height:"100vh"}}>
 
           <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
-
+          <br/>
+            <br/>
+            <br/>
             <div><Contact/>  Avisa a tus contactos</div>
             <br/>
             <div><Eye/>  Que alguien sepa de ti</div>
