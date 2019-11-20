@@ -2,6 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Fab from '@material-ui/core/Fab';
+import SendIcon from '@material-ui/icons/Send';
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,6 +27,12 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 250,
+  },
+  fab: {
+    margin: theme.spacing(1),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -48,6 +58,12 @@ export default function FullWidthGrid() {
           className={classes.textField}
           margin="normal"
         />
+                <Fab aria-label="like" className={classes.fab}>
+        <SendIcon/>
+      </Fab>
+        </div>
+        <div>
+
         </div>
             <br/>
           </Grid>
