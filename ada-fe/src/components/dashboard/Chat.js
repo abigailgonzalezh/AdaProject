@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
-
+import './Chat.css'
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,15 +41,13 @@ export default function FullWidthGrid() {
 
     return (
 <div className={classes.root}>
-      <Grid container style={{height:"100vh"}}>
-
-          <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
-
-          </Grid>
-        
-          <Grid className={classes.paper} alignItems="center" justify="center" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
-          <br/>
-          <div>
+  <Grid container style={{height:"100vh"}}>
+    <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
+          <div class="centered" style={{display:'flex'}}>
+        <div style={{width:'80%'}}>
+  <div style={{height: '400px', overflowY: 'scroll', border: '0.2px solid #A0A0A0'}} >
+    </div>
+    <div>
         <TextField
           id="standard-multiline-flexible"
           label="¿Qué le diras?"
@@ -58,10 +56,17 @@ export default function FullWidthGrid() {
           className={classes.textField}
           margin="normal"
         />
-                <Fab aria-label="like" className={classes.fab}>
+      <Fab aria-label="like" className={classes.fab}>
         <SendIcon/>
       </Fab>
         </div>
+  </div>
+  </div>
+          </Grid>
+        
+          <Grid className={classes.paper} alignItems="center" justify="center" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
+          <br/>
+          
         <div>
 
         </div>
