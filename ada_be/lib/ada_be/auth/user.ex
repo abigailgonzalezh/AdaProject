@@ -3,30 +3,18 @@ defmodule AdaBe.Auth.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :mail, :string
-    field :password, :string, virtual: true
-    field :password_hash, :string
+    field :id_usuario, :integer
+    field :username, :string
+    has_one:credential, AdaBe.Auth.Credential
 
-    timestamps(type: :utc_datetime_usec)
+    timestamps()
   end
 
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:mail, :is_active, :password])
-    |> validate_required([:mail, :is_active, :password])
-    |> unique_constraint(:mail)
-    |> put_password_hash()
+    |> cast(attrs, [:id_usuario, :username])
+    |> validate_required([:id_usuario, :username])
+    |> unique_constraint(:id_usuario)
   end
-
-  defp put_password_hash(
-    %Ecto.Changeset{valid?: true: changes: %{password: password}} = changeset
-  ) do
-    change(changeset, Bcrypt.add_hash(password))
-  end
-
-  defp put_password_hash(changeset) do
-    changeset
-  end
-
 end
