@@ -43,6 +43,7 @@ export default function FullWidthGrid() {
 <div className={classes.root}>
   <Grid container style={{height:"100vh"}}>
     <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
+          <div>Bienvenido usuario</div>
           <div class="centered" style={{display:'flex'}}>
         <div style={{width:'80%'}}>
   <div style={{height: '400px', overflowY: 'scroll', border: '0.2px solid #A0A0A0'}} >
