@@ -25,6 +25,21 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :ueberauth, Ueberauth,
+  base_path: "/api/auth",
+  providers: [
+    identity: {Ueberauth.Strategy.Identity, [
+      callback_methods: ["POST"],
+      nickname_field: :username,
+      param_nesting: "user",
+      uid_field: :username
+    ]}
+  ]
+
+  config :auth_be, AdaBeWeb.AuthAccessPipeline,
+    module: AdaBeWeb.Guardian,
+    error_handler: AdaBeWeb.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

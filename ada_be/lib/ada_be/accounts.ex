@@ -101,4 +101,19 @@ defmodule AdaBe.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  def get_user_by_email_and_password(nil, _password), do: {:error, :invalid}
+  def get_user_by_email_and_password(_email, nil), do: {:error, :invalid}
+
+  def get_user_by_email_and_password(email, password) do
+    with  %User{} = user <- Repo.get_by(User, email: String.downcase(email)),
+        true <- Comeonin.Pbkdf2.checkpw(password, user.hashed_password) do
+      {:ok, user}
+    else
+      _ ->
+        Comeonin.Pbkdf2.dummy_checkpw
+        {:error, :unauthorised}
+    end
+  end
+
 end

@@ -40,7 +40,13 @@ defmodule AdaBe.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ueberauth, "~> 0.5.0"},
+      {:ueberauth_identity, "~> 0.2"},
+      {:guardian, "~> 1.0"},
+      {:comeonin, "~> 4.1"},
+      {:pbkdf2_elixir, "~> 0.12"},
+      {:cors_plug, "~> 2.0"}
     ]
   end
 
