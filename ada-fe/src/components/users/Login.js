@@ -44,7 +44,7 @@ export default function FullWidthGrid() {
                     <TextField
                     id="outlined-basic"
                     className={classes.textField}
-                    label="Usuario"
+                    label="Correo"
                     margin="normal"
                     variant="outlined"
                     />

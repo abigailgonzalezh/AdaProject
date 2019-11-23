@@ -3,15 +3,13 @@ defmodule AdaBe.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
-      add :id_user, :integer
-      add :email, :string
-      add :username, :string
-      add :password, :string
-
+      add :username, :string, null: false
+      add :hashed_password, :string, null: false
+      add :email, :string, null: false
+      
       timestamps()
     end
 
-    create unique_index(:users, [:id_user])
     create unique_index(:users, [:email])
   end
 end

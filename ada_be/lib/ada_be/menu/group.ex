@@ -3,9 +3,10 @@ defmodule AdaBe.Menu.Group do
   import Ecto.Changeset
 
   schema "groups" do
-    field :description, :string
-    field :id_groups, :integer
     field :name, :string
+    field :description, :string
+    field :id_group, :integer
+    many_to_many(:users, AdaBe.Accounts.User, join_through: "user_groups", on_replace: :delete)
 
     timestamps()
   end
@@ -13,8 +14,9 @@ defmodule AdaBe.Menu.Group do
   @doc false
   def changeset(group, attrs) do
     group
-    |> cast(attrs, [:id_groups, :name, :description])
-    |> validate_required([:id_groups, :name, :description])
-    |> unique_constraint(:id_groups)
+    |> cast(attrs, [:name, :description])
+    |> validate_required([:name, :description])
+    |> unique_constraint(:name)
+    |> unique_constraint(:id_group)
   end
 end

@@ -44,6 +44,15 @@ export default function FullWidthGrid() {
                   variant="outlined"
                   />
               </div>
+              <div>
+                  <TextField
+                  id="outlined-basic"
+                  className={classes.textField}
+                  label="Correo"
+                  margin="normal"
+                  variant="outlined"
+                  />
+              </div>
               <div class>
                   <TextField
                   id="outlined-basic"
