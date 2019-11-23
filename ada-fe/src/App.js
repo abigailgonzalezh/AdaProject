@@ -7,6 +7,7 @@ import Landing from "./components/layout/Landing";
 import Chat from "./components/dashboard/Chat";
 import Login from "./components/users/Login";
 import Register from "./components/users/Register"
+import Profile from "./components/dashboard/Profile";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/chat" component={Chat} />
       <Route exact path ="/register" component={Register} />
       <Route exact path ="/login" component={Login} />
+      <Route exact path="/profile" component={Profile} />
     </Router>
   );
 }
