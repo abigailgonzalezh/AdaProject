@@ -3,13 +3,14 @@ defmodule AdaBe.Repo.Migrations.CreatePlaces do
 
   def change do
     create table(:places) do
-      add :id_places, :integer
-      add :name, :string
-      add :description, :string
+      add :name, :string, null: false
+      add :description, :string, null: false
+      add :user_id, references(:users, on_delete: :nothing), null: false
 
       timestamps()
     end
 
-    create unique_index(:places, [:id_places])
+    create unique_index(:places, [:name])
+    create index(:places, [:user_id])
   end
 end

@@ -4,8 +4,8 @@ defmodule AdaBe.Menu.Place do
 
   schema "places" do
     field :description, :string
-    field :id_places, :integer
     field :name, :string
+    belongs_to(:user, AdaBe.Accounts.User)
 
     timestamps()
   end
@@ -13,8 +13,7 @@ defmodule AdaBe.Menu.Place do
   @doc false
   def changeset(place, attrs) do
     place
-    |> cast(attrs, [:id_places, :name, :description])
-    |> validate_required([:id_places, :name, :description])
-    |> unique_constraint(:id_places)
+    |> cast(attrs, [:name, :description])
+    |> validate_required([:name, :description])
   end
 end
