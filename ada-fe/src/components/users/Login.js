@@ -65,7 +65,7 @@ function Login(){
     <Route>
       <Grid container style={{height:"100vh",alignItems:"center",backgroundColor: '#fffcfd'}} class="centered">
         <Container class="centered" >
-            <div class>
+            <div>
               <div>
                 <TextField
                 id="outlined-basic"
@@ -76,7 +76,7 @@ function Login(){
                 value={email} onChange={ev => setEmail(ev.target.value)}
                 />
               </div>
-              <div class>
+              <div>
                   <TextField
                   id="outlined-basic"
                   className={classes.textField}
