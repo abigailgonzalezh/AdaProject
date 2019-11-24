@@ -89,7 +89,7 @@ class SimpleForm extends Component {
      headerTitle="Ada"
      speechSynthesis={{ enable: true, lang: 'sp' }}
         steps={[
-          {
+          {   
             id: '1',
             message: 'A que lugar vas?',
             trigger: 'lugar'
@@ -111,6 +111,7 @@ class SimpleForm extends Component {
           {
             id: 'tiempo',
             options: [
+              { value: '60000', label: '1 min', trigger: '7' },
               { value: '150000', label: '15 min', trigger: '7' },
               { value: '300000', label: '30 min', trigger: '7' },
               { value: '600000', label: '1 hora', trigger: '7' },
@@ -170,7 +171,7 @@ class SimpleForm extends Component {
           {
             id: 'wait',
             message: 'llegaste?',
-            delay: 10000,
+            delay: 600000,
             trigger: 'llegaste',
           },
           {
