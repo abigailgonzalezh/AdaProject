@@ -1,15 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import purple from '@material-ui/core/colors/purple';
 import Contact from '@material-ui/icons/ChildCareOutlined';
 import Eye from '@material-ui/icons/VisibilityOutlined';
 import Heart from '@material-ui/icons/FavoriteBorder';
 import Fab from '@material-ui/core/Fab';
-import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route , Link} from "react-router-dom";
 import { Container } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 
 
 const accent = purple['A200'];
@@ -35,7 +33,7 @@ export default function FullWidthGrid() {
     <div className={classes.root}>
       <Grid container style={{height:"100vh"}}>
 
-          <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
+          <Grid className={classes.paper}  item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
           <br/>
             <br/>
             <br/>
@@ -48,7 +46,7 @@ export default function FullWidthGrid() {
  
       <Route>
         
-          <Grid className={classes.paper} alignItems="center" justify="center" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
+          <Grid className={classes.paper}  item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
           <Container centered>
           <br/>
             <br/>
