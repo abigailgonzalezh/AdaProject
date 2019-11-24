@@ -143,7 +143,7 @@ class Chat extends Component {
           },
           {
             id: 'update-yes',
-            message: 'Que deseas cmabiar?',
+            message: 'Que deseas cambiar?',
             trigger: 'update-fields',
           },
           {
@@ -184,7 +184,7 @@ class Chat extends Component {
           {
             id: 'end-message',
             message: 'Gracias, sus datos han sido guardados!',
-            end: true,
+            trigger: '1',
           },
         ]}
       /></ThemeProvider>
