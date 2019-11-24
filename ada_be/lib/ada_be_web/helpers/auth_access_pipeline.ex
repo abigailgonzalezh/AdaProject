@@ -1,5 +1,5 @@
 defmodule AdaBeWeb.AuthAccessPipeline do
-    use Guardian.Plug.Pipeline, otp_app: :auth_be
+    use Guardian.Plug.Pipeline, otp_app: :ada_be
   
     plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
     plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}

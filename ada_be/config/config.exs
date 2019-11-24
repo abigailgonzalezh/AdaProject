@@ -36,7 +36,7 @@ config :ueberauth, Ueberauth,
     ]}
   ]
 
-  config :auth_be, AdaBeWeb.AuthAccessPipeline,
+  config :ada_be, AdaBeWeb.AuthAccessPipeline,
     module: AdaBeWeb.Guardian,
     error_handler: AdaBeWeb.AuthErrorHandler
 
