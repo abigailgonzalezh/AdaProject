@@ -5,7 +5,7 @@ defmodule AdaBe.Accounts.User do
   schema "users" do
     field :username, :string
     field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    #field :password_confirmation, :string, virtual: true
     field :email, :string
     field :hashed_password, :string
     many_to_many(:groups, AdaBe.Menu.Group, join_through: "user_groups", on_replace: :delete)
@@ -20,16 +20,6 @@ defmodule AdaBe.Accounts.User do
     |> validate_required([:username, :password, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
-  end
-
-  def registration_changeset(struct, attrs = %{}) do
-    struct
-    |> changeset(attrs)
-    |> cast(attrs, [:password, :password_confirmation])
-    |> validate_required(attrs, [:password, :password_confirmation])
-    |> validate_length(:password, min: 8)
-    |> validate_confirmation(:password)
-    |> put_hashed_password()
   end
 
   defp put_hashed_password(changeset) do
