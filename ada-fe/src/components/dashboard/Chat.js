@@ -64,7 +64,7 @@ Review.defaultProps = {
 
 
 
-class SimpleForm extends Component {
+class Chat extends Component {
   
   render() {
     const theme = {
@@ -214,4 +214,4 @@ class SimpleForm extends Component {
   }
 }
 
-export default SimpleForm;
+export default Chat;

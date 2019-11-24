@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     width: 200,
   },
 }));
-export default function FullWidthGrid() {
+export default function Register() {
     const classes = useStyles();    
 
     return (
