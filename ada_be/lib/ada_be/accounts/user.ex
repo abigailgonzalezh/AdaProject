@@ -20,6 +20,7 @@ defmodule AdaBe.Accounts.User do
     |> validate_required([:username, :password, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
+    |>put_hashed_password()
   end
 
   defp put_hashed_password(changeset) do

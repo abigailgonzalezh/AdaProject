@@ -40,5 +40,6 @@ defmodule AdaBeWeb.Endpoint do
     key: "_ada_be_key",
     signing_salt: "0LPvOAXS"
 
+  plug CORSPlug
   plug AdaBeWeb.Router
 end
