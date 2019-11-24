@@ -14,7 +14,7 @@ alias AdaBe.{Repo, Accounts.User}
 [
     %{username: "admin", email: "admin@admin.com", password: "1234"},
     %{username: "abi", email: "abi@abi.com", password: "1234"},
-    %{username: "fer", email: "fer@abi.com", password: "1234"}
+    %{username: "fer", email: "fer@fer.com", password: "1234"}
 ] |> Enum.each(fn user ->
       User.changeset(%User{}, user)
       |> Repo.insert!
