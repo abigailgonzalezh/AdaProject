@@ -19,19 +19,17 @@ class Review extends Component {
       lugar: '',
       tiempo: '',
     };
-
-    
   }
 
   componentWillMount() {
     const { steps } = this.props;
     const { lugar, tiempo} = steps;
 
-
     this.setState({ lugar, tiempo});
   }
 
-  render() {
+
+   render() {
     const { lugar, tiempo} = this.state;
     
     return (
@@ -62,10 +60,12 @@ Review.defaultProps = {
   steps: undefined,
 };
 
-
-
 class Chat extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.delay = 3000;
+  }
+ 
   render() {
     const theme = {
       background: '#f5f8fb',
@@ -77,6 +77,7 @@ class Chat extends Component {
       userBubbleColor: '#fff',
       userFontColor: '#4a4a4a',
     };
+    const that = this;
     return (
       <div>
         <Grid container style={{height:"100vh"}}>
@@ -88,6 +89,7 @@ class Chat extends Component {
       <ChatBot
      headerTitle="Ada"
      speechSynthesis={{ enable: true, lang: 'sp' }}
+     
         steps={[
           {   
             id: '1',
@@ -112,10 +114,10 @@ class Chat extends Component {
             id: 'tiempo',
             options: [
               { value: '60000', label: '1 min', trigger: '7' },
-              { value: '150000', label: '15 min', trigger: '7' },
-              { value: '300000', label: '30 min', trigger: '7' },
-              { value: '600000', label: '1 hora', trigger: '7' },
-              { value: '1200000', label: '2 horas', trigger: '7' },
+              { value: '900000', label: '15 min', trigger: '7' },
+              { value: '1800000', label: '30 min', trigger: '7' },
+              { value: '3600000', label: '1 hora', trigger: '7' },
+              { value: '7200000', label: '2 horas', trigger: '7' },
             ],
           },
           {
@@ -166,12 +168,42 @@ class Chat extends Component {
           {
             id: 'buen-viaje',
             message: 'buen viaje',
-            trigger: 'wait'
+            trigger: ({value, steps}) => { 
+              console.log("value", value);
+              console.log("steps", steps);
+              // steps.tiempo.value === "60000"
+              // that.setState({delay: steps.tiempo.value}); 
+              return `wait-${steps.tiempo.value}`; 
+            }
           },
           {
-            id: 'wait',
+            id: 'wait-60000',
             message: 'llegaste?',
-            delay: 600000,
+            delay: 60000,
+            trigger: 'llegaste',
+          },
+          {
+            id: 'wait-900000',
+            message: 'llegaste?',
+            delay: 900000,
+            trigger: 'llegaste',
+          },
+          {
+            id: 'wait-1800000',
+            message: 'llegaste?',
+            delay: 1800000,
+            trigger: 'llegaste',
+          },
+          {
+            id: 'wait-3600000',
+            message: 'llegaste?',
+            delay: 3600000,
+            trigger: 'llegaste',
+          },
+          {
+            id: 'wait-7200000',
+            message: 'llegaste?',
+            delay: 7200000,
             trigger: 'llegaste',
           },
           {
