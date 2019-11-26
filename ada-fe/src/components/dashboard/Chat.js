@@ -38,12 +38,12 @@ class Review extends Component {
         <table>
           <tbody>
             <tr>
-              <td>Lugar</td>
+              <td>Lugar:</td>
               <td>{lugar.value}</td>
             </tr>
             <tr>
-              <td>Tiempo</td>
-              <td>{tiempo.value}</td>
+              <td>Tiempo:</td>
+              <td>{tiempo.message}</td>
             </tr>
           </tbody>
         </table>
@@ -179,7 +179,7 @@ class Chat extends Component {
           {
             id: 'wait-60000',
             message: 'llegaste?',
-            delay: 60000,
+            delay: 6000, //cambiar tiempo al final
             trigger: 'llegaste',
           },
           {
@@ -209,14 +209,22 @@ class Chat extends Component {
           {
             id: 'llegaste',
             options: [
-              { value: 'si', label: 'Yes', trigger: 'end-message' },
-              { value: 'no', label: 'No', trigger: 'end-message' },
+              { value: 'si', label: 'Yes', trigger: 'opciones' },
+              { value: 'no', label: 'No', trigger: 'opciones' },
+            ]
+          },
+          {
+            id: 'opciones',
+            options: [
+              { value: '', label: 'Volvere a viajar', trigger: '1' },
+              { value: '', label: 'Deseo terminar la conversacion', trigger: 'end-message' },
+              
             ]
           },
           {
             id: 'end-message',
-            message: 'Gracias, sus datos han sido guardados!',
-            trigger: '1',
+            message: 'Espero tu experiencia haya sido grata',
+            end: true,
           },
         ]}
       /></ThemeProvider>
