@@ -139,7 +139,7 @@ class Chat extends Component {
           {
             id: 'update-question',
             options: [
-              { value: 'yes', label: 'Yes', trigger: 'update-yes' },
+              { value: 'si', label: 'Si', trigger: 'update-yes' },
               { value: 'no', label: 'No', trigger: 'buen-viaje' },
             ],
           },
@@ -179,7 +179,7 @@ class Chat extends Component {
           {
             id: 'wait-60000',
             message: 'llegaste?',
-            delay: 6000, //cambiar tiempo al final
+            delay: 600, //cambiar tiempo al final
             trigger: 'llegaste',
           },
           {
@@ -209,21 +209,21 @@ class Chat extends Component {
           {
             id: 'llegaste',
             options: [
-              { value: 'si', label: 'Yes', trigger: 'opciones' },
+              { value: 'si', label: 'Si', trigger: 'opciones' },
               { value: 'no', label: 'No', trigger: 'opciones' },
             ]
           },
           {
             id: 'opciones',
             options: [
-              { value: '', label: 'Volvere a viajar', trigger: '1' },
-              { value: '', label: 'Deseo terminar la conversacion', trigger: 'end-message' },
+              { value: 'Volvere a viajar', label: 'Volvere a viajar', trigger: '1' },
+              { value: 'Deseo terminar la conversacion', label: 'Deseo terminar la conversacion', trigger: 'end-message' },
               
             ]
           },
           {
             id: 'end-message',
-            message: 'Espero tu experiencia haya sido grata',
+            message: 'Espero tu experiencia haya sido grata. Nos vemos pronto!',
             end: true,
           },
         ]}
