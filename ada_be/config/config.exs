@@ -30,11 +30,16 @@ config :ueberauth, Ueberauth,
   providers: [
     identity: {Ueberauth.Strategy.Identity, [
       callback_methods: ["POST"],
-      nickname_field: :username,
+      nickname_field: :email,
       param_nesting: "user",
-      uid_field: :username
+      uid_field: :email
     ]}
   ]
+
+  config :ada_be, AdaBeWeb.Guardian,
+    issuer: "AdaBeWeb",
+    secret_key: "H0n44nb5g2o6x8WVTAO0D9WjxuIqktqshOBbB/vRFz5bYRLt76/pppB34B+Ygs/7" # Generate your own key with 'mix phx.gen.secret'
+  
 
   config :ada_be, AdaBeWeb.AuthAccessPipeline,
     module: AdaBeWeb.Guardian,
