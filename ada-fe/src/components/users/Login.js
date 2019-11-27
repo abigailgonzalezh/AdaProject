@@ -53,12 +53,16 @@ function Login(){
           password: password
         }
       })
-    }).then( response => response.json()
-    ).then( json => {
+    })
+    .then( response => {
+      if (!response.ok)
+        throw new Error("abc") 
+      return response.json(); 
+    }).then( json => {
       console.log( json.data );
       Actions.login(email, json.data.token );
       history.replace(from);
-    });
+    }).catch(error => console.log(error));
   }
 
   return(
