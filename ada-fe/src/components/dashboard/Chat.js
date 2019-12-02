@@ -210,7 +210,7 @@ class Chat extends Component {
             id: 'llegaste',
             options: [
               { value: 'si', label: 'Si', trigger: 'opciones' },
-              { value: 'no', label: 'No', trigger: 'opciones' },
+              { value: 'no', label: 'No', trigger: 'mas-tiempo' },
             ]
           },
           {
@@ -220,6 +220,11 @@ class Chat extends Component {
               { value: 'Deseo terminar la conversacion', label: 'Deseo terminar la conversacion', trigger: 'end-message' },
               
             ]
+          },
+          {
+            id: 'mas-tiempo',
+            message: 'Te esperare otros 30 min',
+            trigger: 'wait-1800000'
           },
           {
             id: 'end-message',
