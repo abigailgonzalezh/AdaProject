@@ -16,4 +16,11 @@ defmodule AdaBeWeb.Router do
       post "/identity/callback", AuthenticationController, :identity_callback
     end
   end
+
+   scope "/api", AdaBeWeb do
+    pipe_through [:api, :authenticated]
+
+    get "/places", PlaceController, :index
+    post "/places", PlaceController, :create
+   end
 end
