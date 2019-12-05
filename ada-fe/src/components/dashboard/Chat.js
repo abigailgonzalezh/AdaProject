@@ -64,6 +64,21 @@ class Chat extends Component {
   constructor(props) {
     super(props);
     this.delay = 3000;
+    this.state = {loaded: false, options: []};
+  }
+
+  componentWillMount() {
+    fetch("http://localhost:4000/api/places/"
+    ).then(res => res.json()
+    ).then(res => {
+      console.log(res);
+      this.setState({loaded:true, options:[
+        { value: 'casa', label: 'casa', trigger: '3' },
+        { value: 'escuela', label: 'escuela', trigger: '3' },
+        { value: 'plaza', label: 'plaza', trigger: '3' },
+        { value: 'restaurante', label: 'restaurante', trigger: '3' },
+      ]})
+    });
   }
  
   render() {
@@ -85,9 +100,10 @@ class Chat extends Component {
         
         <div class="centered" style={{display:'flex'}}>
         <div style={{width:'80%'}}>
+          
         <ThemeProvider theme={theme}>
-      <ChatBot
-     headerTitle="Ada"
+        {
+        this.state.loaded ? (<ChatBot headerTitle="Ada"
      speechSynthesis={{ enable: true, lang: 'sp' }}
      
         steps={[
@@ -98,12 +114,7 @@ class Chat extends Component {
           },
           {
             id: 'lugar',
-            options: [
-              { value: 'casa', label: 'casa', trigger: '3' },
-              { value: 'escuela', label: 'escuela', trigger: '3' },
-              { value: 'plaza', label: 'plaza', trigger: '3' },
-              { value: 'restaurante', label: 'restaurante', trigger: '3' },
-            ],
+            options: this.state.options
           },
           {
             id: '3',
@@ -231,9 +242,13 @@ class Chat extends Component {
             message: 'Espero tu experiencia haya sido grata. Nos vemos pronto!',
             end: true,
           },
-        ]}
-      /></ThemeProvider>
+        ]}/>
+        ): null
+      }
+      </ThemeProvider>
+     
       </div>
+      
       </div>
       </Grid>
       <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
