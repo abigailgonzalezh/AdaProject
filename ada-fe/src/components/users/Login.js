@@ -40,7 +40,7 @@ function Login(){
   const [password, setPassword] = useState("");
 
   let { from } = location.state || { from: { pathname: "/" } };
-
+  console.log(from);
   let handleAuthentication = async () => {
     fetch("http://localhost:4000/api/auth/identity/callback", {
       method: "POST",
@@ -61,7 +61,7 @@ function Login(){
     }).then( json => {
       console.log( json.data );
       Actions.login(email, json.data.token );
-      history.replace(from);
+      history.replace("/chat");
     }).catch(error => console.log(error));
   }
 
@@ -91,9 +91,7 @@ function Login(){
                   value={password} onChange={ev => setPassword(ev.target.value)}
                   />
               </div>
-              <Link to="/chat">
                 <Fab variant="rounded" className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => handleAuthentication()}>Ingresar</Fab>
-              </Link>
             </div>
           </Container>
         </Grid>
