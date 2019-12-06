@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +7,7 @@ import Contact from '@material-ui/icons/ChildCareOutlined';
 import Eye from '@material-ui/icons/VisibilityOutlined';
 import Heart from '@material-ui/icons/FavoriteBorder';
 import Fab from '@material-ui/core/Fab';
-import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Route , Link, useHistory, useLocation} from "react-router-dom";
 import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -42,8 +42,39 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Profile() {
+export default function Profile(props) {
   const classes = useStyles();
+
+  console.log(`El token es ${props.token}`)
+  let history = useHistory();
+  let location = useLocation();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  let { from } = location.state || { from: { pathname: "/" } };
+  console.log(from);
+  let places = async () => {
+    fetch("http://localhost:4000/api/places", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${props.token}`
+      },
+      body: JSON.stringify({
+        place: {
+          name: name,
+          description: description
+        }
+      }) 
+    })
+    .then( response => {
+      if (!response.ok)
+        throw new Error("error") 
+      return response.json(); 
+    }).then( json => {
+      console.log( json.data );
+    }).catch(error => console.log(error));
+  }
 
   return (
     <div className={classes.root}>
@@ -63,6 +94,7 @@ export default function Profile() {
                     label="Nombre del lugar"
                     margin="normal"
                     variant="outlined"
+                    value={name} onChange={ev => setName(ev.target.value)}
                     />
                 </div>
                 <div >
@@ -72,9 +104,10 @@ export default function Profile() {
                     label="Descripcion"
                     margin="normal"
                     variant="outlined"
+                    value={description} onChange={ev => setDescription(ev.target.value)}
                     />
                 </div>
-                <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Agregar</Fab>
+                <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => places()}>Agregar</Fab>
             <br/>
             <br/>
             Ingresa a un grupo
