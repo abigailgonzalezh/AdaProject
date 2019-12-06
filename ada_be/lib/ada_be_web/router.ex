@@ -21,7 +21,9 @@ defmodule AdaBeWeb.Router do
    scope "/api", AdaBeWeb do
     pipe_through [:api, :authenticated]
 
-    get "/places", PlaceController, :index #renders a list of all items of the given resource type
-    post "/places", PlaceController, :create #receives params for one new item and saves it in a datastore
+    get "/places", PlaceController, :index 
+    post "/places", PlaceController, :create 
+    get "/groups", GroupController, :index
+    post "/groups", GroupController, :create
    end
 end
