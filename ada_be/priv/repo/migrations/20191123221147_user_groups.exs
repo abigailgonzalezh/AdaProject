@@ -11,7 +11,7 @@ defmodule AdaBe.Repo.Migrations.UserGroups do
   create(index(:user_groups, [:group_id]))
 
   create(
-    unique_index(:user_groups, [:user_id, :group_id], name: :user_id_group_id_unique_index)
+    unique_index(:user_groups, [:user_id, :group_id])
   )
   end
 end
