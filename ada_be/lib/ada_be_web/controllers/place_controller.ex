@@ -7,8 +7,7 @@ defmodule AdaBeWeb.PlaceController do
     alias AdaBe.Repo
 
     def index(conn, _params) do
-      IO.puts "---------------------------------------------"
-      IO.inspect user = AdaBeWeb.Guardian.Plug.current_resource(conn)
+      user = AdaBeWeb.Guardian.Plug.current_resource(conn)
 
       names = Repo.all(from p in Place, where: p.user_id == ^user.id, select: p.name)
 
@@ -17,8 +16,8 @@ defmodule AdaBeWeb.PlaceController do
 
     def create(conn, %{"place" => place_params}) do
         AdaBeWeb.Guardian.Plug.current_resource(conn)
-        |> Ecto.build_assoc(:places, params)
-        |> Repo.insert!(place)
+        |> Ecto.build_assoc(:places, place_params)
+        |> Repo.insert!()
         json(conn, %{msg: "Place successfully registered"})
     end
 end
