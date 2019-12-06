@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
-import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Route , useHistory,  useLocation } from "react-router-dom";
 import './Login.css'
 
 const useStyles = makeStyles(theme => ({
@@ -27,8 +27,40 @@ const useStyles = makeStyles(theme => ({
     width: 200,
   },
 }));
+
 export default function Register() {
     const classes = useStyles();    
+    let location = useLocation();
+    let history = useHistory();
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [password_confirmation, setPassword_confirmation] = useState("");
+    
+    let { from } = location.state || { from: { pathname: "/" } };
+    console.log(from);
+    let registration = async () => {
+      fetch("http://localhost:4000/api/registration", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation
+        })
+      })
+      .then( response => {
+        if (!response.ok)
+          throw new Error("error") 
+        return response.json(); 
+      }).then( json => {
+        console.log( json.data ); 
+        history.replace("/login");
+      })
+    } 
 
     return (
       <Route>
@@ -42,6 +74,7 @@ export default function Register() {
                   label="Usuario"
                   margin="normal"
                   variant="outlined"
+                  value={username} onChange={ev => setUsername(ev.target.value)}
                   />
               </div>
               <div>
@@ -51,6 +84,7 @@ export default function Register() {
                   label="Correo"
                   margin="normal"
                   variant="outlined"
+                  value={email} onChange={ev => setEmail(ev.target.value)}
                   />
               </div>
               <div class>
@@ -58,8 +92,10 @@ export default function Register() {
                   id="outlined-basic"
                   className={classes.textField}
                   label="Contraseña"
+                  type="password"
                   margin="normal"
                   variant="outlined"
+                  value={password} onChange={ev => setPassword(ev.target.value)}
                   />
               </div>
               <div class>
@@ -67,13 +103,13 @@ export default function Register() {
                   id="outlined-basic"
                   className={classes.textField}
                   label="Confirmar contraseña"
+                  type="password"
                   margin="normal"
                   variant="outlined"
+                  value={password_confirmation} onChange={ev => setPassword_confirmation(ev.target.value)}
                   />
               </div>
-              <Link to="/Login">
-                      <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Registrarse</Fab>
-                  </Link>
+                      <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => registration()}>Registrarse</Fab>
                   </div>
               </Container>
       </Grid>
