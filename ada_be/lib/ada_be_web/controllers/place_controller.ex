@@ -15,9 +15,13 @@ defmodule AdaBeWeb.PlaceController do
     end
 
     def create(conn, %{"place" => place_params}) do
-        AdaBeWeb.Guardian.Plug.current_resource(conn)
-        |> Ecto.build_assoc(:places, place_params)
+        user = AdaBeWeb.Guardian.Plug.current_resource(conn)
+        Place.changeset(%Place{}, place_params)
+        |> Ecto.Changeset.put_change(:user_id, user.id)
+        |> IO.inspect
         |> Repo.insert!()
+        IO.inspect "==============================="
+
         json(conn, %{msg: "Place successfully registered"})
     end
 end

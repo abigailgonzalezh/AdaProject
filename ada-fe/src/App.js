@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
@@ -10,13 +10,15 @@ import Profile from "./components/dashboard/Profile";
 
 
 function App() {
+  const [token, setToken] = useState("");
+
   return (
     <Router>
       <Route exact strict path="/" component={Landing} />
       <Route exact path="/chat" component={Chat} />
       <Route exact path ="/register" component={Register} />
-      <Route exact path ="/login" component={Login} />
-      <Route exact path="/profile" component={Profile} />
+      <Route exact path ="/login" component={() => <Login setToken={setToken} />} />
+      <Route exact path="/profile" component={() => <Profile token={token}/>} />
     </Router>
   );
 }

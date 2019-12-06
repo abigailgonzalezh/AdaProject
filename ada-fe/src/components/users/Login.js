@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Login(){
+function Login(props){
   const classes = useStyles();  
   let history = useHistory();
   let location = useLocation();
@@ -40,7 +40,7 @@ function Login(){
   const [password, setPassword] = useState("");
 
   let { from } = location.state || { from: { pathname: "/" } };
-  console.log(from);
+  console.log(props);
   let handleAuthentication = async () => {
     fetch("http://localhost:4000/api/auth/identity/callback", {
       method: "POST",
@@ -52,7 +52,7 @@ function Login(){
           email: email,
           password: password
         }
-      })
+      }) 
     })
     .then( response => {
       if (!response.ok)
@@ -61,6 +61,7 @@ function Login(){
     }).then( json => {
       console.log( json.data );
       Actions.login(email, json.data.token );
+      props.setToken(json.data.token);
       history.replace("/chat");
     }).catch(error => console.log(error));
   }
