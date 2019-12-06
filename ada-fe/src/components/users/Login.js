@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
-import { BrowserRouter as Router, Route , Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { BrowserRouter as Route , useHistory, useLocation } from "react-router-dom";
 import './Login.css'
 import Actions from '../../state_management/Actions';
 
