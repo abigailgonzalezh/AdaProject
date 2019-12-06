@@ -15,8 +15,9 @@ defmodule AdaBeWeb.Router do
     scope "/auth" do
       post "/identity/callback", AuthenticationController, :identity_callback
     end
+    post "/registration", RegistrationController, :register
   end
-
+ 
    scope "/api", AdaBeWeb do
     pipe_through [:api, :authenticated]
 
