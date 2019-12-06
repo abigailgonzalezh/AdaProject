@@ -10,6 +10,7 @@ defmodule AdaBeWeb.AuthenticationController do
       password = auth.credentials.other.password
       handle_user_conn(Accounts.get_user_by_email_and_password(email, password), conn)
     end
+
   
     defp handle_user_conn(user, conn) do
       case user do
