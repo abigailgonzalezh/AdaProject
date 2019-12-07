@@ -1,35 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Account from '@material-ui/icons/AccountCircle';
-import { BrowserRouter as Router, Route , Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route , Link, useHistory, useLocation } from "react-router-dom";
 import Container from '@material-ui/core/Container';
-
-
 class Review extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       lugar: '',
       tiempo: '',
     };
   }
-
   componentWillMount() {
     const { steps } = this.props;
     const { lugar, tiempo} = steps;
-
     this.setState({ lugar, tiempo});
   }
-
-
    render() {
     const { lugar, tiempo} = this.state;
-    
     return (
       <div style={{ width: '100%' }}>
         <h3>informacion</h3>
@@ -49,63 +41,62 @@ class Review extends Component {
     );
   }
 }
-
 Review.propTypes = {
   steps: PropTypes.object,
 };
-
 Review.defaultProps = {
   steps: undefined,
 };
-
 class Chat extends Component {
   constructor(props) {
     super(props);
     this.delay = 3000;
     this.state = {loaded: false, options: []};
   }
-
-  componentWillMount() {
-    fetch("http://localhost:4000/api/places/"
+  UNSAFE_componentWillReceiveProps(props) {
+    console.log(`El token es ${props.token}`)
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
+    console.log(from);
+    fetch("http://localhost:4000/api/places/", {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${props.token}`
+      }
+    }
     ).then(res => res.json()
     ).then(res => {
       console.log(res);
-      this.setState({loaded:true, options:[
-        { value: 'casa', label: 'casa', trigger: '3' },
-        { value: 'escuela', label: 'escuela', trigger: '3' },
-        { value: 'plaza', label: 'plaza', trigger: '3' },
-        { value: 'restaurante', label: 'restaurante', trigger: '3' },
-      ]})
+      this.setState({loaded:true, options: res.places.map(p => ({ value: p, label: p, trigger: '3'}))
+      })
     });
   }
- 
   render() {
     const theme = {
-      background: '#f5f8fb',
-      headerBgColor: '#a288e3',
+      background: '#F5F8FB',
+      headerBgColor: '#A288E3',
       headerFontColor: '#fff',
       headerFontSize: '15px',
-      botBubbleColor: '#999ac6',
+      botBubbleColor: '#999AC6',
       botFontColor: '#fff',
       userBubbleColor: '#fff',
-      userFontColor: '#4a4a4a',
+      userFontColor: '#4A4A4A',
     };
     const that = this;
     return (
       <div>
         <Grid container style={{height:"100vh"}}>
-        <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
-        
+        <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#FFE0EB', color: 'black'}}>
         <div class="centered" style={{display:'flex'}}>
         <div style={{width:'80%'}}>
-          
         <ThemeProvider theme={theme}>
         {
         this.state.loaded ? (<ChatBot headerTitle="Ada"
      speechSynthesis={{ enable: true, lang: 'sp' }}
-     
         steps={[
-          {   
+          {
             id: '1',
             message: 'A que lugar vas?',
             trigger: 'lugar'
@@ -177,12 +168,12 @@ class Chat extends Component {
           {
             id: 'buen-viaje',
             message: 'buen viaje',
-            trigger: ({value, steps}) => { 
+            trigger: ({value, steps}) => {
               console.log("value", value);
               console.log("steps", steps);
               // steps.tiempo.value === "60000"
-              // that.setState({delay: steps.tiempo.value}); 
-              return `wait-${steps.tiempo.value}`; 
+              // that.setState({delay: steps.tiempo.value});
+              return `wait-${steps.tiempo.value}`;
             }
           },
           {
@@ -227,7 +218,6 @@ class Chat extends Component {
             options: [
               { value: 'Volvere a viajar', label: 'Volvere a viajar', trigger: '1' },
               { value: 'Deseo terminar la conversacion', label: 'Deseo terminar la conversacion', trigger: 'end-message' },
-              
             ]
           },
           {
@@ -244,23 +234,21 @@ class Chat extends Component {
         ): null
       }
       </ThemeProvider>
-     
       </div>
-      
       </div>
       </Grid>
-      <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#fffcfd', color: 'black'}}>
+      <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#FFFCFD', color: 'black'}}>
       <Container class="centered">
           <div>
             <div>
             <Link to="/profile">
-            <Fab variant="rounded"  marginTop="12"alignItems="center"style={{backgroundColor: '#f09eba'}}> <Account/> </Fab>
+            <Fab variant="rounded"  marginTop="12"alignItems="center"style={{backgroundColor: '#F09EBA'}}> <Account/> </Fab>
             </Link>
             </div>
             <br/>
             <br/>
             <Link to="/">
-            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#f09eba'}}>Cerrar sesion</Fab>
+            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}}>Cerrar sesion</Fab>
             <br/>
             </Link>
             </div>
@@ -271,5 +259,4 @@ class Chat extends Component {
     );
   }
 }
-
 export default Chat;

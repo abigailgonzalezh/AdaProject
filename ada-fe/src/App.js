@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Route exact strict path="/" component={Landing} />
-      <Route exact path="/chat" component={Chat} />
+      <Route exact path="/chat" component={() => <Chat setToken={setToken} />} />
       <Route exact path ="/register" component={Register} />
       <Route exact path ="/login" component={() => <Login setToken={setToken} />} />
       <Route exact path="/profile" component={() => <Profile token={token}/>} />
