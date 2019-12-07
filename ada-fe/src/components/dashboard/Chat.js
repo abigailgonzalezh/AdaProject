@@ -53,17 +53,13 @@ class Chat extends Component {
     this.delay = 3000;
     this.state = {loaded: false, options: []};
   }
-  UNSAFE_componentWillReceiveProps(props) {
-    console.log(`El token es ${props.token}`)
-    let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
-    console.log(from);
+  componentWillMount(props) {
+    console.log(`El token es ${this.props.token}`)
     fetch("http://localhost:4000/api/places/", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${props.token}`
+        'Authorization': `Bearer ${this.props.token}`
       }
     }
     ).then(res => res.json()
