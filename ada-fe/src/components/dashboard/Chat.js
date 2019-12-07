@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Account from '@material-ui/icons/AccountCircle';
-import { BrowserRouter as Link, } from "react-router-dom";
+import { BrowserRouter as Router, Route , Link, } from "react-router-dom";
 import Container from '@material-ui/core/Container';
 class Review extends Component {
   constructor(props) {
