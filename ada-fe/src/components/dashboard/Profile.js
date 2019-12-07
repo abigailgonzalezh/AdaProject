@@ -50,6 +50,8 @@ export default function Profile(props) {
   let location = useLocation();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [name_g, setNameg] = useState("");
+  const [description_g, setDescriptiong] = useState("");
 
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from);
@@ -64,6 +66,29 @@ export default function Profile(props) {
         place: {
           name: name,
           description: description
+        }
+      }) 
+    })
+    .then( response => {
+      if (!response.ok)
+        throw new Error("error") 
+      return response.json(); 
+    }).then( json => {
+      console.log( json.data );
+    }).catch(error => console.log(error));
+  }
+
+  let groups = async () => {
+    fetch("http://localhost:4000/api/groups", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${props.token}`
+      },
+      body: JSON.stringify({
+        group: {
+          name: name_g,
+          description: description_g
         }
       }) 
     })
@@ -134,21 +159,31 @@ export default function Profile(props) {
          <div>
              Crea un grupo y comparte el numero para que tus amigos tambien ingresen a el
             <div >
-                    <TextField
-                    id="outlined-basic"
-                    className={classes.textField}
-                    label="Crear grupo"
-                    margin="normal"
-                    variant="outlined"
-                    />
-                </div>
-                <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Crear</Fab>
-            <br/>
-            <br/>
+              <TextField
+              id="outlined-basic"
+              className={classes.textField}
+              label="Crear grupo"
+              margin="normal"
+              variant="outlined"
+              value={name_g} onChange={ev => setNameg(ev.target.value)}
+               />
             </div>
+            <div >
+              <TextField
+              id="outlined-basic"
+              className={classes.textField}
+              label="Descripcion del grupo"
+              margin="normal"
+              variant="outlined"
+              value={description_g} onChange={ev => setDescriptiong(ev.target.value)}
+              />
+            </div>
+            <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => groups()}>Crear</Fab>
+            <br/>
+            <br/>
+          </div>
          </Container>
           </Grid>
-          
         </Route>
       </Grid>
     </div>
