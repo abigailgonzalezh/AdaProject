@@ -11,11 +11,10 @@ defmodule AdaBeWeb.AuthenticationController do
       handle_user_conn(Accounts.get_user_by_email_and_password(email, password), conn)
     end
 
-    def delete(conn, _params) do
-    conn
-    |> AdaBeWeb.Guardian.Plug.sign_out()
-    end
-
+def delete(conn, _params) do
+  jwt = Guardian.Plug.current_token(conn)
+  |> Guardian.Plug.sign_out()
+end
   
     defp handle_user_conn(user, conn) do
       case user do

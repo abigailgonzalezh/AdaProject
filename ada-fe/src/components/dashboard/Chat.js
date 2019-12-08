@@ -78,7 +78,7 @@ class Chat extends Component {
   logout() {
     console.log(`El token es ${this.props.token}`)
     fetch("http://localhost:4000/api/logout/", {
-      method: "DELETE",
+      method: "POST",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.props.token}`

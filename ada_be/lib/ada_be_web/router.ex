@@ -21,7 +21,7 @@ defmodule AdaBeWeb.Router do
  
    scope "/api", AdaBeWeb do
     pipe_through [:api, :authenticated]
-    delete "/logout", AuthenticationController, :delete
+    post "/logout", AuthenticationController, :delete
     get "/places", PlaceController, :index 
     post "/places", PlaceController, :create 
     get "/groups", GroupController, :index
