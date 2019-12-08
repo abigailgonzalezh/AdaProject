@@ -55,8 +55,9 @@ function Login(props){
       }) 
     })
     .then( response => {
-      if (!response.ok)
-        throw new Error("abc") 
+      if (!response.ok){
+        throw alert("Favor de ingresar datos validos") 
+      }
       return response.json(); 
     }).then( json => {
       console.log( json.data );

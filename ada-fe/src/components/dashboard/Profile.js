@@ -72,7 +72,7 @@ export default function Profile(props) {
     })
     .then( response => {
       if (!response.ok)
-        throw new Error("error") 
+        throw alert("Error al crear un lugar") 
       return response.json(); 
     }).then( json => {
       console.log( json.data );
