@@ -265,10 +265,8 @@ class Chat extends Component {
             </div>
             <br/>
             <br/>
-            <Link to="/">
             <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}} onClick={() => that.logout()}>Cerrar sesion</Fab>
             <br/>
-            </Link>
             </div>
             </Container >
       </Grid>
