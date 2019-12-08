@@ -52,6 +52,7 @@ export default function Profile(props) {
   const [description, setDescription] = useState("");
   const [name_g, setNameg] = useState("");
   const [description_g, setDescriptiong] = useState("");
+  const [id_g, setId] = useState("");
 
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from);
@@ -88,7 +89,8 @@ export default function Profile(props) {
       body: JSON.stringify({
         group: {
           name: name_g,
-          description: description_g
+          description: description_g,
+          id_group: id_g
         }
       }) 
     })
@@ -176,6 +178,16 @@ export default function Profile(props) {
               margin="normal"
               variant="outlined"
               value={description_g} onChange={ev => setDescriptiong(ev.target.value)}
+              />
+            </div>
+            <div >
+              <TextField
+              id="outlined-basic"
+              className={classes.textField}
+              label="Identificador numerico"
+              margin="normal"
+              variant="outlined"
+              value={id_g} onChange={ev => setId(ev.target.value)}
               />
             </div>
             <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => groups()}>Crear</Fab>
