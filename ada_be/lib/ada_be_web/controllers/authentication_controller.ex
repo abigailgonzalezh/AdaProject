@@ -11,8 +11,8 @@ defmodule AdaBeWeb.AuthenticationController do
       handle_user_conn(Accounts.get_user_by_email_and_password(email, password), conn)
     end
 
-    def delete(user,conn) do
-    user
+    def delete(conn, _params) do
+    conn
     |> AdaBeWeb.Guardian.Plug.sign_out()
     end
 
