@@ -14,7 +14,6 @@ defmodule AdaBeWeb.AuthenticationController do
     def delete(user,conn) do
     user
     |> AdaBeWeb.Guardian.Plug.sign_out()
-    |> redirect(to: "/")
     end
 
   
