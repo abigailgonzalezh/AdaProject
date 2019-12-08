@@ -15,6 +15,7 @@ class Review extends Component {
       tiempo: '',
     };
   }
+
   componentWillMount() {
     const { steps } = this.props;
     const { lugar, tiempo} = steps;
@@ -47,6 +48,9 @@ Review.propTypes = {
 Review.defaultProps = {
   steps: undefined,
 };
+
+
+
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +73,24 @@ class Chat extends Component {
       })
     });
   }
+
+  
+  logout() {
+    console.log(`El token es ${this.props.token}`)
+    fetch("http://localhost:4000/api/logout/", {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`
+      }
+    }
+    ).then(res => res.json()
+    ).then(res => {
+    });
+  }
+
   render() {
+    let that = this;
     const theme = {
       background: '#F5F8FB',
       headerBgColor: '#A288E3',
@@ -80,7 +101,8 @@ class Chat extends Component {
       userBubbleColor: '#fff',
       userFontColor: '#4A4A4A',
     };
-    const that = this;
+
+
     return (
       <div>
         <Grid container style={{height:"100vh"}}>
@@ -244,7 +266,7 @@ class Chat extends Component {
             <br/>
             <br/>
             <Link to="/">
-            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}}>Cerrar sesion</Fab>
+            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}} onClick={() => logout()}>Cerrar sesion</Fab>
             <br/>
             </Link>
             </div>
