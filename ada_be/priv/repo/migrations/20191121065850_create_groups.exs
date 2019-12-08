@@ -10,6 +10,6 @@ defmodule AdaBe.Repo.Migrations.CreateGroups do
       timestamps()
     end
 
-    create unique_index(:groups, [:name, :id_group])
+    create unique_index(:groups, [:id_group])
   end
 end

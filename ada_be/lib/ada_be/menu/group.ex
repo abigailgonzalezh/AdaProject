@@ -14,9 +14,8 @@ defmodule AdaBe.Menu.Group do
   @doc false
   def changeset(group, attrs) do
     group
-    |> cast(attrs, [:name, :description])
-    |> validate_required([:name, :description])
-    |> unique_constraint(:name)
+    |> cast(attrs, [:name, :description, :id_group])
+    |> validate_required([:name, :description, :id_group])
     |> unique_constraint(:id_group)
   end
 end

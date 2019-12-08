@@ -13,12 +13,13 @@ defmodule AdaBeWeb.GroupController do
 
     def create(conn, %{"group" => group_params}) do
         user = AdaBeWeb.Guardian.Plug.current_resource(conn)
+        user = Repo.preload(user, [:groups])
         group = Group.changeset(%Group{}, group_params)
-        Repo.insert!(group)
-        user = Repo.preload(user, [:places])
-        user_changeset = Ecto.Changeset.change(user)
-        user_groups_changeset = user_changeset |> Ecto.Changeset.put_assoc(:groups, [group])
-        Repo.update!(user_groups_changeset)
+        groups = user.groups ++ [group] |> Enum.map(&Ecto.Changeset.change/1)
+        user
+        |> Ecto.Changeset.change
+        |> Ecto.Changeset.put_assoc(:groups, groups)
+        |> Repo.update
 
         IO.inspect "==============================="
 
