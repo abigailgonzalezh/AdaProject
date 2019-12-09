@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import purple from '@material-ui/core/colors/purple';
-import Contact from '@material-ui/icons/ChildCareOutlined';
-import Eye from '@material-ui/icons/VisibilityOutlined';
-import Heart from '@material-ui/icons/FavoriteBorder';
 import Fab from '@material-ui/core/Fab';
 import { BrowserRouter as Route , Link, useHistory, useLocation} from "react-router-dom";
 import { Container } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Home from '@material-ui/icons/Home';
 
@@ -78,6 +73,7 @@ export default function Profile(props) {
     }).then( json => {
       console.log( json.data );
     }).catch(error => console.log(error));
+    document.location.href = "/profile";
   }
 
   let groups = async () => {
@@ -102,6 +98,7 @@ export default function Profile(props) {
     }).then( json => {
       console.log( json.data );
     }).catch(error => console.log(error));
+    document.location.href = "/profile";
   }
 
   let join = async () => {
@@ -124,6 +121,7 @@ export default function Profile(props) {
     }).then( json => {
       console.log( json.data );
     }).catch(error => console.log(error));
+    document.location.href = "/profile";
   }
 
   return (
@@ -131,10 +129,12 @@ export default function Profile(props) {
       <Grid container style={{height:"100vh"}}>
       
           <Grid className={classes.paper} justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#ffe0eb', color: 'black'}}>
+          <br/>
           <Link to="/Chat">
             <Fab variant="rounded"  marginTop="12" style={{backgroundColor: '#f09eba'}}> <Home/> </Fab>
             </Link>
-         <Container class="centered">
+            <br/><br/><br/><br/>
+         <Container >
          <div>
              Introduce tus lugares frecuentes
             <div >
@@ -158,7 +158,6 @@ export default function Profile(props) {
                     />
                 </div>
                 <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => places()}>Agregar</Fab>
-            <br/>
             <br/>
             Ingresa a un grupo
             <div >
