@@ -11,6 +11,11 @@ defmodule AdaBeWeb.GroupChannel do
         {:ok, assign(socket, :group, group)}
     end
 
+    def handle_in("send_message", payload, socket) do
+        broadcast socket, "handle_message", payload
+        {:noreply, socket}
+    end
+
     def terminate(_reason, socket) do
         {:ok, socket}
     end

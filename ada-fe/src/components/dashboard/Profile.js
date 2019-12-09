@@ -74,7 +74,6 @@ export default function Profile(props) {
     }).then( json => {
       console.log( json.data );
     }).catch(error => console.log(error));
-    document.location.href = "/profile";
   }
 
   let groups = async () => {
@@ -100,7 +99,6 @@ export default function Profile(props) {
       console.log( json.data );
       
     }).catch(error => console.log(error));
-    document.location.href = "/profile";
   }
 
   let join = async () => {
@@ -124,7 +122,6 @@ export default function Profile(props) {
       console.log( json.data );
       that.props.setGroup(json.data.id_group);
     }).catch(error => console.log(error));
-    document.location.href = "/profile";
   }
 
   return (

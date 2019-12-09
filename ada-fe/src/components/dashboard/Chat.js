@@ -63,6 +63,7 @@ class Chat extends Component {
   }
 
   setupSocket(){
+    const { lugar, tiempo} = this.state;
     console.log("SI LLEGUE AQUI!---------------------------------")
     console.log(this.props);
     let socket = new Socket("ws://localhost:4000/socket", {params: 1});
@@ -74,6 +75,10 @@ class Chat extends Component {
     .receive("ok", ({messages}) => console.log("Connected", messages))
     .receive("error", ({reason}) => console.log("Failed to join", reason) )
     .receive("timeout", () => console.log("Networking issue. Still waiting..."));
+
+    channel.on("handle_message", msg => {
+      this.setState({messages: ["salio a "+ this.lugar+ "en" + this.tiempo]});
+    });
   }
 
   componentWillMount(props) {
@@ -209,6 +214,10 @@ class Chat extends Component {
             trigger: ({value, steps}) => {
               console.log("value", value);
               console.log("steps", steps);
+
+              this.channel.push("send_message");
+              this.setState({message: ''})
+
               // steps.tiempo.value === "60000"
               // that.setState({delay: steps.tiempo.value});
               return `wait-${steps.tiempo.value}`;
@@ -217,7 +226,7 @@ class Chat extends Component {
           {
             id: 'wait-60000',
             message: 'llegaste?',
-            delay: 600, //cambiar tiempo al final
+            delay: 60000, //cambiar tiempo al final
             trigger: 'llegaste',
           },
           {
