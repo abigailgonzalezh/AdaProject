@@ -7,6 +7,9 @@ import Fab from '@material-ui/core/Fab';
 import Account from '@material-ui/icons/AccountCircle';
 import { BrowserRouter as Router, Route , Link, } from "react-router-dom";
 import Container from '@material-ui/core/Container';
+import { positions } from '@material-ui/system';
+import Exit from '@material-ui/icons/ExitToApp';
+
 class Review extends Component {
   constructor(props) {
     super(props);
@@ -256,17 +259,18 @@ class Chat extends Component {
       </div>
       </Grid>
       <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#FFFCFD', color: 'black'}}>
-      <Container class="centered">
+        <br/>
+      <Container rigth="rigth">
           <div>
             <div>
             <Link to="/profile">
-            <Fab variant="rounded"  marginTop="12"alignItems="center"style={{backgroundColor: '#F09EBA'}}> <Account/> </Fab>
+            <Fab variant="rounded"  marginTop="12"alignItems="center"style={{backgroundColor: '#F09EBA'}}> <Account/> Perfil </Fab>
             </Link>
             </div>
             <br/>
             <Link to="/">
             <br/>
-            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}} onClick={() => that.logout()}>Cerrar sesion</Fab>
+            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}} onClick={() => that.logout()}><Exit/>Cerrar sesion</Fab>
             <br/>
             </Link>
             </div>
