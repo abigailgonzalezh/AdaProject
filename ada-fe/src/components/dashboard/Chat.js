@@ -7,6 +7,9 @@ import Fab from '@material-ui/core/Fab';
 import Account from '@material-ui/icons/AccountCircle';
 import { BrowserRouter as Router, Route , Link, } from "react-router-dom";
 import Container from '@material-ui/core/Container';
+import { positions } from '@material-ui/system';
+import Exit from '@material-ui/icons/ExitToApp';
+
 class Review extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,7 @@ class Review extends Component {
       tiempo: '',
     };
   }
+
   componentWillMount() {
     const { steps } = this.props;
     const { lugar, tiempo} = steps;
@@ -47,6 +51,9 @@ Review.propTypes = {
 Review.defaultProps = {
   steps: undefined,
 };
+
+
+
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +76,24 @@ class Chat extends Component {
       })
     });
   }
+
+  
+  logout() {
+    console.log(`El token es ${this.props.token}`)
+    fetch("http://localhost:4000/api/logout/", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`
+      }
+    }
+    ).then(res => res.json()
+    ).then(res => {
+    });
+  }
+
   render() {
+    let that = this;
     const theme = {
       background: '#F5F8FB',
       headerBgColor: '#A288E3',
@@ -80,7 +104,8 @@ class Chat extends Component {
       userBubbleColor: '#fff',
       userFontColor: '#4A4A4A',
     };
-    const that = this;
+
+
     return (
       <div>
         <Grid container style={{height:"100vh"}}>
@@ -234,17 +259,18 @@ class Chat extends Component {
       </div>
       </Grid>
       <Grid textAlign="center" width="50%" justify="flex-start" item xs={12} lg={6} style={{backgroundColor: '#FFFCFD', color: 'black'}}>
-      <Container class="centered">
+        <br/>
+      <Container rigth="rigth">
           <div>
             <div>
             <Link to="/profile">
-            <Fab variant="rounded"  marginTop="12"alignItems="center"style={{backgroundColor: '#F09EBA'}}> <Account/> </Fab>
+            <Fab variant="rounded"  marginTop="12"alignItems="center"style={{backgroundColor: '#F09EBA'}}> <Account/> Perfil </Fab>
             </Link>
             </div>
             <br/>
-            <br/>
             <Link to="/">
-            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}}>Cerrar sesion</Fab>
+            <br/>
+            <Fab variant="rounded" marginTop="12" alignItems="center" width="200" style={{backgroundColor: '#F09EBA'}} onClick={() => that.logout()}><Exit/>Cerrar sesion</Fab>
             <br/>
             </Link>
             </div>
