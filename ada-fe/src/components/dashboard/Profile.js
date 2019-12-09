@@ -53,6 +53,7 @@ export default function Profile(props) {
   const [name_g, setNameg] = useState("");
   const [description_g, setDescriptiong] = useState("");
   const [id_g, setId] = useState("");
+  const [id, setIdg] = useState("");
 
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from);
@@ -91,6 +92,28 @@ export default function Profile(props) {
           name: name_g,
           description: description_g,
           id_group: id_g
+        }
+      }) 
+    })
+    .then( response => {
+      if (!response.ok)
+        throw new Error("error") 
+      return response.json(); 
+    }).then( json => {
+      console.log( json.data );
+    }).catch(error => console.log(error));
+  }
+
+  let join = async () => {
+    fetch("http://localhost:4000/api/join", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${props.token}`
+      },
+      body: JSON.stringify({
+        group: {
+          id_group: id
         }
       }) 
     })
@@ -145,10 +168,11 @@ export default function Profile(props) {
                     label="Ingresar a grupo"
                     margin="normal"
                     variant="outlined"
+                    value={id} onChange={ev => setIdg(ev.target.value)}
                     />
                 </div>
                 
-                <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}}>Ingresar</Fab>
+                <Fab variant="rounded"  className={classes.fab} style={{backgroundColor: '#f09eba'}} onClick={() => join()}>Ingresar</Fab>
             <br/>
             </div>
          </Container>
