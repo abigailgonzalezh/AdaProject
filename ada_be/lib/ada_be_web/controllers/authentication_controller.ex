@@ -14,6 +14,7 @@ defmodule AdaBeWeb.AuthenticationController do
 def delete(conn, _params) do
   conn
   |> AdaBeWeb.Guardian.Plug.sign_out()
+  |>json(%{message: "logout realizado"})
 end
   
     defp handle_user_conn(user, conn) do
