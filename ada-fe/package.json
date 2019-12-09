@@ -13,7 +13,8 @@
     "react-simple-chatbot": "^0.6.1",
     "reflux": "^6.4.1",
     "styled-components": "^4.4.1",
-    "typeface-roboto": "^0.0.75"
+    "typeface-roboto": "^0.0.75",
+    "phoenix": "^1.4.10"
   },
   "scripts": {
     "start": "react-scripts start",

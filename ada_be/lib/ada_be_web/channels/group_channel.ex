@@ -1,7 +1,11 @@
 defmodule AdaBeWeb.GroupChannel do
     use AdaBeWeb, :channel
 
-    def join("groups:" <> id_group, _params, socket) do
+    alias AdaBe.Repo
+
+    def join("group:" <> id_group, _params, socket) do
+
+        #{:ok, socket}
         group = Repo.get!(AdaBe.Menu.Group, id_group)
 
         {:ok, assign(socket, :group, group)}

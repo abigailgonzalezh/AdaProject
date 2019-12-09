@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route , Link, } from "react-router-dom";
 import Container from '@material-ui/core/Container';
 import { positions } from '@material-ui/system';
 import Exit from '@material-ui/icons/ExitToApp';
+import {Socket} from 'phoenix';
 
 class Review extends Component {
   constructor(props) {
@@ -60,6 +61,21 @@ class Chat extends Component {
     this.delay = 3000;
     this.state = {loaded: false, options: []};
   }
+
+  setupSocket(){
+    console.log("SI LLEGUE AQUI!---------------------------------")
+    console.log(this.props);
+    let socket = new Socket("ws://localhost:4000/socket", {params: 1});
+    socket.connect();
+    let channel = socket.channel("group:1");
+    this.channel = channel;
+
+    channel.join()
+    .receive("ok", ({messages}) => console.log("Connected", messages))
+    .receive("error", ({reason}) => console.log("Failed to join", reason) )
+    .receive("timeout", () => console.log("Networking issue. Still waiting..."));
+  }
+
   componentWillMount(props) {
     console.log(`El token es ${this.props.token}`)
     fetch("http://localhost:4000/api/places/", {
@@ -75,6 +91,7 @@ class Chat extends Component {
       this.setState({loaded:true, options: res.names.map(p => ({ value: p, label: p, trigger: '3'}))
       })
     });
+    this.setupSocket();
   }
 
   

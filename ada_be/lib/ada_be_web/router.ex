@@ -24,6 +24,7 @@ defmodule AdaBeWeb.Router do
     post "/logout", AuthenticationController, :delete
     get "/places", PlaceController, :index 
     post "/places", PlaceController, :create 
+    get "/groups", GroupController, :index
     post "/groups", GroupController, :create
     post "/join", JoinController, :join
    end

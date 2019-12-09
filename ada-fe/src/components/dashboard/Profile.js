@@ -55,6 +55,7 @@ export default function Profile(props) {
   const [id_g, setId] = useState("");
   const [id, setIdg] = useState("");
 
+  let that = this;
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from);
   let places = async () => {
@@ -101,6 +102,7 @@ export default function Profile(props) {
       return response.json(); 
     }).then( json => {
       console.log( json.data );
+      
     }).catch(error => console.log(error));
   }
 
@@ -123,6 +125,7 @@ export default function Profile(props) {
       return response.json(); 
     }).then( json => {
       console.log( json.data );
+      that.props.setGroup(json.data.id_group);
     }).catch(error => console.log(error));
   }
 
