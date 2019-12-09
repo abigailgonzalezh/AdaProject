@@ -12,7 +12,7 @@ defmodule AdaBeWeb.AuthenticationController do
     end
 
 def delete(conn, _params) do
-  jwt = Guardian.Plug.current_token(conn)
+  conn
   |> Guardian.Plug.sign_out()
 end
   
